@@ -17,12 +17,12 @@ const UUID = process.env.UUID || 'dcb52c2b-33cf-4058-a668-f9237d38f62a'; // 使�
 const NEZHA_SERVER = process.env.NEZHA_SERVER || '';        // 哪吒v1填写形式: nz.abc.com:8008  哪吒v0填写形式：nz.abc.com
 const NEZHA_PORT = process.env.NEZHA_PORT || '';            // 使用哪吒v1请留空，哪吒v0需填写
 const NEZHA_KEY = process.env.NEZHA_KEY || '';              // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
-const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'sapsgm.1791765.xyz';          // 固定隧道域名,留空即启用临时隧道
-const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiMjE2NTFlZjAtMzcyMC00MzE5LWJhZTAtMTAwYWRkZDc2ZDFmIiwicyI6Ik16RmlOekF6TWpjdE5EUm1OQzAwWlRGaUxUZ3hZbVV0WVdRM1kyWTRZVGd5Wm1ReCJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'galaxy.ubi.netlib.re';          // 固定隧道域名,留空即启用临时隧道
+const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiZDY0OGNkNDgtNzdmZS00MzkzLTllZjItOTVkYWJkYWFhMTY0IiwicyI6IlpqZGlPVE00Tm1NdE1qWXlZeTAwTjJFMUxXRXpOell0TVRnNU5EZzVaalk0WTJaaCJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
 const ARGO_PORT = process.env.ARGO_PORT || 8001;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
 const CFIP = process.env.CFIP || 'store.ubi.com';        // 节点优选域名或优选ip  
 const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
-const NAME = process.env.NAME || 'streamlit';                        // 节点名称
+const NAME = process.env.NAME || 'galaxy';                        // 节点名称
 
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
