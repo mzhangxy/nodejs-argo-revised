@@ -1,24 +1,23 @@
-# 告诉流水线不要运行默认的构建工具
+# 1. 通用配置，关闭默认构建
 general:
   buildTool: 'none'
 
+# 2. 明确定义每个阶段的开关
 stages:
   Build:
-    npmExecuteScripts: false
+    enabled: false
   Release:
-    # 强制开启部署步骤
     enabled: true
 
+# 3. 定义步骤参数
 steps:
-  # 彻底关掉那个报错的构建步骤
+  # 强制关闭 cnbBuild
   cnbBuild:
     condition: false
-  
-  # 配置部署到 Kyma 的具体参数
-  cloudFoundationCassandraDeploy:
-    # 这里填写你在 CI/CD 界面创建的 Credential 名称
+
+  # 使用更通用的 kubernetesDeploy 步骤名称（这是大多数模板支持的标准名称）
+  kubernetesDeploy:
     kubeConfigSecret: 'kyma-kubeconfig'
-    # 你的 Kyma 命名空间
     namespace: 'default'
-    # 你的 GitHub 镜像地址
+    # 注意：某些版本的脚本可能需要把 image 放在具体的 helm 参数里，我们先尝试直接定义
     image: 'ghcr.io/mzhangxy/trialapp:latest'
