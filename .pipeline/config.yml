@@ -1,23 +1,3 @@
 # 1. 通用配置，关闭默认构建
 general:
   buildTool: 'none'
-
-# 2. 明确定义每个阶段的开关
-stages:
-  Build:
-    enabled: false
-  Release:
-    enabled: true
-
-# 3. 定义步骤参数
-steps:
-  # 强制关闭 cnbBuild
-  cnbBuild:
-    condition: false
-
-  # 使用更通用的 kubernetesDeploy 步骤名称（这是大多数模板支持的标准名称）
-  kubernetesDeploy:
-    kubeConfigSecret: 'kyma-kubeconfig'
-    namespace: 'default'
-    # 注意：某些版本的脚本可能需要把 image 放在具体的 helm 参数里，我们先尝试直接定义
-    image: 'ghcr.io/mzhangxy/trialapp:latest'
