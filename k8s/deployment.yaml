@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-argo
+  namespace: default  # 或你的目标 namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-argo
+  template:
+    metadata:
+      labels:
+        app: nodejs-argo
+    spec:
+      containers:
+      - name: nodejs-argo
+        image: ghcr.io/mzhangxy/trialapp:latest  # 替换为你的镜像地址
+        ports:
+        - containerPort: 3000  # 如果使用其他端口，修改这里
+        env:  # 这里添加所有需要的环境变量（从 README 复制）
+        - name: PORT
+          value: "3000"
+        - name: ARGO_AUTH
+          value: "eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiYjVlZmIwMzMtNTg4OS00NWYyLThhNTItN2E1NzQ3MzRiN2ZiIiwicyI6Ik56WTFPRFEyTW1NdE1ETTJOeTAwWW1RMkxXRTVOR0V0TmprME5tUmlPVFEwTUdReCJ9"  # 必须配置
+        - name: ARGO_DOMAIN
+          value: "trialsap.hostia.ggff.net"
+        # 添加其他变量，如 UUID, NEZHA_SERVER, NEZHA_PORT, NEZHA_KEY 等
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
