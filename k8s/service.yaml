@@ -9,4 +9,4 @@ spec:
   ports:
   - port: 3000
     targetPort: 3000
-  type: ClusterIP  # 暂时用 ClusterIP，后续可加 Ingress 暴露
+  type: LoadBalancer  # 暂时用 ClusterIP，后续可加 Ingress 暴露
