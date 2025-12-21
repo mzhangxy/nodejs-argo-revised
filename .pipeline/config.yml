@@ -1,9 +1,24 @@
+# 告诉流水线不要运行默认的构建工具
 general:
   buildTool: 'none'
+
+stages:
+  Build:
+    npmExecuteScripts: false
+  Release:
+    # 强制开启部署步骤
+    enabled: true
+
 steps:
+  # 彻底关掉那个报错的构建步骤
   cnbBuild:
     condition: false
-  cloudFoundationCassandraDeploy: # 这是部署到 Kyma 的底层步骤名称
-    kubeConfigSecret: 'kyma-kube-secret'
+  
+  # 配置部署到 Kyma 的具体参数
+  cloudFoundationCassandraDeploy:
+    # 这里填写你在 CI/CD 界面创建的 Credential 名称
+    kubeConfigSecret: 'kyma-kubeconfig'
+    # 你的 Kyma 命名空间
     namespace: 'default'
+    # 你的 GitHub 镜像地址
     image: 'ghcr.io/mzhangxy/trialapp:latest'
