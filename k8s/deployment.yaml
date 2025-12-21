@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodejs-argo
+  name: trialapp
   namespace: default  # 或你的目标 namespace
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nodejs-argo
+      app: trialapp
   template:
     metadata:
       labels:
-        app: nodejs-argo
+        app: trialapp
     spec:
       containers:
-      - name: nodejs-argo
+      - name: trialapp
         image: ghcr.io/mzhangxy/trialapp:latest  # 替换为你的镜像地址
+        imagePullPolicy: Always  # 每次都拉取最新镜像
         ports:
         - containerPort: 3000  # 如果使用其他端口，修改这里
         env:  # 这里添加所有需要的环境变量（从 README 复制）
@@ -27,9 +28,9 @@ spec:
           value: "trialsap.hostia.ggff.net"
         # 添加其他变量，如 UUID, NEZHA_SERVER, NEZHA_PORT, NEZHA_KEY 等
         resources:
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
           requests:
-            cpu: "100m"
             memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
