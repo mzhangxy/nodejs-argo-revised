@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodejs-argo-service
+  name: trialapp-service
   namespace: default
 spec:
-  type: ClusterIP  # 或 LoadBalancer 如果需要外部访问
   selector:
-    app: nodejs-argo
+    app: trialapp
   ports:
   - port: 3000
     targetPort: 3000
+  type: ClusterIP  # 暂时用 ClusterIP，后续可加 Ingress 暴露
