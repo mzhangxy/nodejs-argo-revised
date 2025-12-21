@@ -1,0 +1,29 @@
+general:
+  verbose: false
+  failOnMissingConfig: true
+
+steps:
+  - name: containerBuild
+    type: containerBuild
+    parameters:
+      dockerFilePath: 'Dockerfile'  # 使用根目录的 Dockerfile
+      containerImageName: 'ghcr.io/mzhangxy/trialapp'
+      containerImageTag: 'latest'
+      containerRegistryUrl: 'ghcr.io'
+      dockerConfigJsonCredentialsId: 'ghcr-docker-config'  # 你创建的 Docker Configuration 凭证
+
+  - name: kubernetesDeploy
+    type: kubernetesDeploy
+    parameters:
+      deployTool: 'kubectl'  # 使用 kubectl 而不是 helm
+      kubernetesCredentialsId: 'kyma-kubeconfig'
+      namespace: 'default'
+      deployCommand: 'apply -f k8s/ --recursive'  # 应用你的两个 YAML 文件
+      runInAcceptance: false
+      runInProduction: true  # 自动部署到生产（Kyma）
+
+stages:
+  Build:
+    - containerBuild
+  Production:
+    - kubernetesDeploy
