@@ -1,0 +1,9 @@
+general:
+  buildTool: 'none'
+steps:
+  cnbBuild:
+    condition: false
+  cloudFoundationCassandraDeploy: # 这是部署到 Kyma 的底层步骤名称
+    kubeConfigSecret: 'kyma-kube-secret'
+    namespace: 'default'
+    image: 'ghcr.io/mzhangxy/trialapp:latest'
