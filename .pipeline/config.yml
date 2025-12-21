@@ -1,3 +1,0 @@
-# 1. 通用配置，关闭默认构建
-general:
-  buildTool: 'none'
