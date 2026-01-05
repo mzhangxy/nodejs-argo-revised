@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trialapp
+  name: trial
   namespace: default  # 或你的目标namespace
   labels:
-    app: trialapp
+    app: trial
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: trialapp
+      app: trial
   template:
     metadata:
       labels:
-        app: trialapp
+        app: trial
     spec:
       containers:
-      - name: trialapp
+      - name: trial
         image: ghcr.io/mzhangxy/trialapp:latest  # 替换为你的镜像地址
         imagePullPolicy: Always  # 每次都拉取最新镜像
         ports:
@@ -39,4 +39,4 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
-        restartPolicy: Always
+        # restartPolicy: Always
