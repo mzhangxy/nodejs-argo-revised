@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: trialapp-service
   namespace: default
+  labels:
+    app: trialapp
 spec:
   selector:
     app: trialapp
   ports:
   - port: 3000
-    targetPort: 3000
+    targetPort: 8080
   type: LoadBalancer  # 暂时用 ClusterIP，后续可加 Ingress 暴露
