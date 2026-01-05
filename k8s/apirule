@@ -1,13 +1,13 @@
 apiVersion: gateway.kyma-project.io/v1beta1
 kind: APIRule
 metadata:
-  name: my-app-api-rule
-  namespace: ${NAMESPACE}
+  name: trialapp-api-rule
+  namespace: default
   labels:
-    app: my-app
+    app: trialapp
 spec:
   gateway: kyma-system/kyma-gateway
-  host: my-app.${KYMA_CLUSTER_DOMAIN}  # 会被替换为实际的 Kyma 域名
+  host: trialapp.${KYMA_CLUSTER_DOMAIN}  # 会被替换为实际的 Kyma 域名
   rules:
     - path: /.*
       methods:
@@ -29,5 +29,5 @@ spec:
       #       trusted_issuers:
       #         - https://your-identity-provider
   service:
-    name: my-app-service          #改为自己对应的app name
+    name: trialapp-service          #改为自己对应的app name
     port: 8080
