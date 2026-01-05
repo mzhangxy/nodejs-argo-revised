@@ -11,7 +11,7 @@ spec:
     - "trial.b21355b.kyma.ondemand.com" 
   service:
     name: trial-service  
-    port: 8080           
+    port: 3000           
   rules:
     - path: /*
       methods: ["GET"]
