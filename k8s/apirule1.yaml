@@ -1,0 +1,18 @@
+apiVersion: gateway.kyma-project.io/v2
+kind: APIRule
+metadata:
+  name: trial-api-rule
+  namespace: default
+  labels:
+    app: trial
+spec:
+  gateway: kyma-system/kyma-gateway
+  hosts:
+    - "trial.b21355b.kyma.ondemand.com" # 必须是数组格式（有短横线），建议加双引号
+  service:
+    name: trial-service  # 确保这个名字和你 deployment.yaml 里的 service 一致
+    port: 8080             # 确保是数字
+  rules:
+    - path: /.* # v2 里的 path 通常不需要复杂正则，/.* 即可
+      methods: ["GET"]
+      noAuth: true       # 替代旧版的 allow 策略
