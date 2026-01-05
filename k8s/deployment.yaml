@@ -2,7 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: trialapp
-  namespace: default  # 或你的目标 namespace
+  namespace: default  # 或你的目标namespace
+  labels:
+    app: trialapp
 spec:
   replicas: 1
   selector:
