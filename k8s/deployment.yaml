@@ -26,6 +26,9 @@ spec:
           value: "eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiYjVlZmIwMzMtNTg4OS00NWYyLThhNTItN2E1NzQ3MzRiN2ZiIiwicyI6Ik56WTFPRFEyTW1NdE1ETTJOeTAwWW1RMkxXRTVOR0V0TmprME5tUmlPVFEwTUdReCJ9"  # 必须配置
         - name: ARGO_DOMAIN
           value: ""
+        - name: UUID
+          value: ""
+          
         # 添加其他变量，如 UUID, NEZHA_SERVER, NEZHA_PORT, NEZHA_KEY 等
         resources:
           requests:
@@ -34,3 +37,4 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
+        restartPolicy: Always
