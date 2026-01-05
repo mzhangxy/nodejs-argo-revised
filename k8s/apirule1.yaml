@@ -8,7 +8,7 @@ metadata:
 spec:
   gateway: kyma-system/kyma-gateway
   hosts:
-    - "trial.b21355b.kyma.ondemand.com" 
+    - "trial.bxxxxxx.kyma.ondemand.com" 
   service:
     name: trial-service  
     port: 3000           
