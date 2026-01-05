@@ -29,8 +29,8 @@ spec:
         # 添加其他变量，如 UUID, NEZHA_SERVER, NEZHA_PORT, NEZHA_KEY 等
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "256Mi"
+            cpu: "200m"
           limits:
             memory: "512Mi"
             cpu: "500m"
