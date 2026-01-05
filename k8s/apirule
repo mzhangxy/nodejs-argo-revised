@@ -1,0 +1,33 @@
+apiVersion: gateway.kyma-project.io/v1beta1
+kind: APIRule
+metadata:
+  name: my-app-api-rule
+  namespace: ${NAMESPACE}
+  labels:
+    app: my-app
+spec:
+  gateway: kyma-system/kyma-gateway
+  host: my-app.${KYMA_CLUSTER_DOMAIN}  # 会被替换为实际的 Kyma 域名
+  rules:
+    - path: /.*
+      methods:
+        - GET
+       # - POST
+       # - PUT
+       # - DELETE
+       # - PATCH
+       # - OPTIONS
+       # - HEAD
+      accessStrategies:
+        - handler: noop  # 无认证，适用于公开 API
+      # 如需 JWT 认证，使用以下配置：
+      # accessStrategies:
+      #   - handler: jwt
+      #     config:
+      #       jwks_urls:
+      #         - https://your-identity-provider/.well-known/jwks.json
+      #       trusted_issuers:
+      #         - https://your-identity-provider
+  service:
+    name: my-app-service          #改为自己对应的app name
+    port: 8080
