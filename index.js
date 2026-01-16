@@ -17,12 +17,12 @@ const UUID = process.env.UUID || '810df322-928c-4ee4-af35-1a0cf377eb0d'; // 使�
 const NEZHA_SERVER = process.env.NEZHA_SERVER || '';        // 哪吒v1填写形式: nz.abc.com:8008  哪吒v0填写形式：nz.abc.com
 const NEZHA_PORT = process.env.NEZHA_PORT || '';            // 使用哪吒v1请留空，哪吒v0需填写
 const NEZHA_KEY = process.env.NEZHA_KEY || '';              // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
-const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'trialsap.hostia.ggff.net';          // 固定隧道域名,留空即启用临时隧道
-const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiYjVlZmIwMzMtNTg4OS00NWYyLThhNTItN2E1NzQ3MzRiN2ZiIiwicyI6Ik56WTFPRFEyTW1NdE1ETTJOeTAwWW1RMkxXRTVOR0V0TmprME5tUmlPVFEwTUdReCJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';          // 固定隧道域名,留空即启用临时隧道
+const ARGO_AUTH = process.env.ARGO_AUTH || '';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
 const ARGO_PORT = process.env.ARGO_PORT || 8001;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
 const CFIP = process.env.CFIP || 'store.ubi.com';        // 节点优选域名或优选ip  
 const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
-const NAME = process.env.NAME || 'sap';                        // 节点名称
+const NAME = process.env.NAME || '';                        // 节点名称
 
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
