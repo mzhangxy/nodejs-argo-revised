@@ -1,0 +1,45 @@
+name: Sync normal2go from GHCR to Docker Hub
+
+on:
+  workflow_dispatch:          # 允许手动触发（推荐先手动跑一次测试）
+  release:
+    types: [published]        # 当你创建 GitHub Release 时自动触发（可选）
+  push:
+    tags:
+      - 'v*'                  # 当你 push v1.0、v1.1 等 tag 时触发（可选）
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read          # 读取 GHCR 需要的权限
+
+    steps:
+      - name: Login to GitHub Container Registry (GHCR)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}           # 你的 GitHub 用户名 mzhangxy
+          password: ${{ secrets.GITHUB_TOKEN }}   # 系统自动提供的 token，有读权限就够
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Pull, retag and push to Docker Hub
+        run: |
+          SOURCE_IMAGE="ghcr.io/mzhangxy/normal2go:v1"
+          TARGET_IMAGE="mzhangxy/normal2go:v1"           # ← 这里改成你想要的 Docker Hub 镜像名和 tag
+
+          echo "Pulling ${SOURCE_IMAGE} ..."
+          docker pull "${SOURCE_IMAGE}"
+
+          echo "Tagging as ${TARGET_IMAGE} ..."
+          docker tag "${SOURCE_IMAGE}" "${TARGET_IMAGE}"
+
+          echo "Pushing ${TARGET_IMAGE} to Docker Hub ..."
+          docker push "${TARGET_IMAGE}"
+
+          echo "Done! Image synced: ${TARGET_IMAGE}"
