@@ -24,6 +24,7 @@ const CFIP = process.env.CFIP || 'cdns.doon.eu.org';        // 节点优选域�
 const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
 const NAME = process.env.NAME || '';                        // 节点名称
 
+console.log("Container started, initializing...");
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
   fs.mkdirSync(FILE_PATH);
