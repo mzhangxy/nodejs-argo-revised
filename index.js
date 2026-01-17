@@ -614,7 +614,11 @@ async function startserver() {
     console.error('Error in startserver:', error);
   }
 }
-startserver().catch(error => {
-  console.error('Unhandled error in startserver:', error);
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`HTTP server is running on port:${PORT}!`);
+
+  startserver().catch(error => {
+    console.error('Critical error during startserver:', error);
+  });
 });
-app.listen(PORT, () => console.log(`http server is running on port:${PORT}!`));
