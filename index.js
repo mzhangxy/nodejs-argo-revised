@@ -14,9 +14,9 @@ const FILE_PATH = process.env.FILE_PATH || './tmp';   // 运行目录,sub节点�
 const SUB_PATH = process.env.SUB_PATH || 'sub';       // 订阅路径
 const PORT = process.env.SERVER_PORT || process.env.PORT || 3000;        // http服务订阅端口
 const UUID = process.env.UUID || '685e09db-9b77-47ba-a0db-72d5f8b4f5ce'; // 使用哪吒v1,在不同的平台运行需修改UUID,否则会覆盖
-const NEZHA_SERVER = process.env.NEZHA_SERVER || '';        // 哪吒v1填写形式: nz.abc.com:8008  哪吒v0填写形式：nz.abc.com
-const NEZHA_PORT = process.env.NEZHA_PORT || '';            // 使用哪吒v1请留空，哪吒v0需填写
-const NEZHA_KEY = process.env.NEZHA_KEY || '';              // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
+const AN_SERVER = process.env.AN_SERVER || '';        // 哪吒v1填写形式: nz.abc.com:8008  哪吒v0填写形式：nz.abc.com
+const AN_PORT = process.env.AN_PORT || '';            // 使用哪吒v1请留空，哪吒v0需填写
+const AN_KEY = process.env.AN_KEY || '';              // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
 const ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';          // 固定隧道域名,留空即启用临时隧道
 const ARGO_AUTH = process.env.ARGO_AUTH || '';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
 const ARGO_PORT = process.env.ARGO_PORT || 8001;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
@@ -223,19 +223,19 @@ async function downloadFilesAndRun() {
       }
     });
   }
-  const filesToAuthorize = NEZHA_PORT ? [npmPath, webPath, botPath] : [phpPath, webPath, botPath];
+  const filesToAuthorize = AN_PORT ? [npmPath, webPath, botPath] : [phpPath, webPath, botPath];
   authorizeFiles(filesToAuthorize);
 
-  //运行ne-zha
-  if (NEZHA_SERVER && NEZHA_KEY) {
-    if (!NEZHA_PORT) {
+  //运行ne
+  if (AN_SERVER && AN_KEY) {
+    if (!AN_PORT) {
       // 检测哪吒是否开启TLS
-      const port = NEZHA_SERVER.includes(':') ? NEZHA_SERVER.split(':').pop() : '';
+      const port = AN_SERVER.includes(':') ? AN_SERVER.split(':').pop() : '';
       const tlsPorts = new Set(['443', '8443', '2096', '2087', '2083', '2053']);
-      const nezhatls = tlsPorts.has(port) ? 'true' : 'false';
+      const antls = tlsPorts.has(port) ? 'true' : 'false';
       // 生成 config.yaml
       const configYaml = `
-client_secret: ${NEZHA_KEY}
+client_secret: ${AN_KEY}
 debug: false
 disable_auto_update: true
 disable_command_execute: false
@@ -246,11 +246,11 @@ gpu: false
 insecure_tls: true
 ip_report_period: 1800
 report_delay: 4
-server: ${NEZHA_SERVER}
+server: ${AN_SERVER}
 skip_connection_count: true
 skip_procs_count: true
 temperature: false
-tls: ${nezhatls}
+tls: ${antls}
 use_gitee_to_upgrade: false
 use_ipv6_country_code: false
 uuid: ${UUID}`;
@@ -267,12 +267,12 @@ uuid: ${UUID}`;
         console.error(`php running error: ${error}`);
       }
     } else {
-      let NEZHA_TLS = '';
+      let AN_TLS = '';
       const tlsPorts = ['443', '8443', '2096', '2087', '2083', '2053'];
-      if (tlsPorts.includes(NEZHA_PORT)) {
-        NEZHA_TLS = '--tls';
+      if (tlsPorts.includes(AN_PORT)) {
+        AN_TLS = '--tls';
       }
-      const command = `nohup ${npmPath} -s ${NEZHA_SERVER}:${NEZHA_PORT} -p ${NEZHA_KEY} ${NEZHA_TLS} --disable-auto-update --report-delay 4 --skip-conn --skip-procs >/dev/null 2>&1 &`;
+      const command = `nohup ${npmPath} -s ${AN_SERVER}:${AN_PORT} -p ${AN_KEY} ${AN_TLS} --disable-auto-update --report-delay 4 --skip-conn --skip-procs >/dev/null 2>&1 &`;
       try {
         await exec(command);
         console.log(`${npmName} is running`);
@@ -282,7 +282,7 @@ uuid: ${UUID}`;
       }
     }
   } else {
-    console.log('NEZHA variable is empty,skip running');
+    console.log('AN variable is empty,skip running');
   }
   //运行xr-ay
   const command1 = `nohup ${webPath} -c ${FILE_PATH}/config.json >/dev/null 2>&1 &`;
@@ -333,8 +333,8 @@ function getFilesForArchitecture(architecture) {
     ];
   }
 
-  if (NEZHA_SERVER && NEZHA_KEY) {
-    if (NEZHA_PORT) {
+  if (AN_SERVER && AN_KEY) {
+    if (AN_PORT) {
       const npmUrl = architecture === 'arm' 
         ? "https://arm64.ssss.nyc.mn/agent"
         : "https://amd64.ssss.nyc.mn/agent";
@@ -552,9 +552,9 @@ function cleanFiles() {
   setTimeout(() => {
     const filesToDelete = [bootLogPath, configPath, webPath, botPath];  
     
-    if (NEZHA_PORT) {
+    if (AN_PORT) {
       filesToDelete.push(npmPath);
-    } else if (NEZHA_SERVER && NEZHA_KEY) {
+    } else if (AN_SERVER && AN_KEY) {
       filesToDelete.push(phpPath);
     }
 
