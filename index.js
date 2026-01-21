@@ -17,12 +17,12 @@ const UUID = process.env.UUID || '685e09db-9b77-47ba-a0db-72d5f8b4f5ce'; //
 const AN_SERVER = process.env.AN_SERVER || '';        // 
 const AN_PORT = process.env.AN_PORT || '';            // 
 const AN_KEY = process.env.AN_KEY || '';              // 
-const ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';          // 固定隧道域名,留空即启用临时隧道
-const ARGO_AUTH = process.env.ARGO_AUTH || '';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'ussa.colorrora.com';          // 固定隧道域名,留空即启用临时隧道
+const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiNjRkNDgyOWItOWU5ZS00YmU5LTgwMmEtZTQ4NWEzMTc5YTUxIiwicyI6IllXWm1OR1V4TUdVdFltUmlOQzAwTkRCbUxXRXpZMll0T1dVek4yVTNOR1l6WXpJMCJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
 const ARGO_PORT = process.env.ARGO_PORT || 8001;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
 const CFIP = process.env.CFIP || 'cdns.doon.eu.org';        // 节点优选域名或优选ip  
 const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
-const NAME = process.env.NAME || '';                        // 节点名称
+const NAME = process.env.NAME || 'SA';                        // 节点名称
 
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
