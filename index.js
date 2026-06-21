@@ -6,23 +6,23 @@ const fs = require("fs");
 const path = require("path");
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
-const { execSync } = require('child_process');        // 只填写UPLOAD_URL将上传节点,同时填写UPLOAD_URL和PROJECT_URL将上传订阅
-const UPLOAD_URL = process.env.UPLOAD_URL || '';      // 节点或订阅自动上传地址,需填写部署Merge-sub项目后的首页地址,例如：https://merge.xxx.com
-const PROJECT_URL = process.env.PROJECT_URL || '';    // 需要上传订阅或保活时需填写项目分配的url,例如：https://google.com
+const { execSync } = require('child_process');        // 
+const UPLOAD_URL = process.env.UPLOAD_URL || '';      // 
+const PROJECT_URL = process.env.PROJECT_URL || '';    // 
 const AUTO_ACCESS = process.env.AUTO_ACCESS || false; // false关闭自动保活，true开启,需同时填写PROJECT_URL变量
-const FILE_PATH = process.env.FILE_PATH || './tmp';   // 运行目录,sub节点文件保存目录
+const FILE_PATH = process.env.FILE_PATH || './tmp';   // 运行目录,sub文件保存目录
 const SUB_PATH = process.env.SUB_PATH || 'sub';       // 订阅路径
 const PORT = process.env.SERVER_PORT || process.env.PORT || 3000;        // http服务订阅端口
-const UUID = process.env.UUID || '685e09db-9b77-47ba-a0db-72d5f8b4f5ce'; // 
+const UUID = process.env.UUID || '920793ec-52e7-4ff6-9d4a-824a54f33ac3'; // 
 const AN_SERVER = process.env.AN_SERVER || '';        // 
 const AN_PORT = process.env.AN_PORT || '';            // 
 const AN_KEY = process.env.AN_KEY || '';              // 
-const ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';          // 固定隧道域名,留空即启用临时隧道
-const ARGO_AUTH = process.env.ARGO_AUTH || '';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
-const ARGO_PORT = process.env.ARGO_PORT || 8001;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
-const CFIP = process.env.CFIP || 'store.ubi.com';        // 节点优选域名或优选ip  
-const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
-const NAME = process.env.NAME || '';                        // 节点名称
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'ky.colorrora.com';           
+const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiYjI0MGM1ZTMtMmM3OS00Y2U5LWFiNzMtZjhhNzFlMzZjNWQ1IiwicyI6Ik1qZGtZVGRsTWprdE56TmpaUzAwWldZd0xUbG1PR0l0WldKa05XTTRNRE15WmpFMSJ9';              
+const ARGO_PORT = process.env.ARGO_PORT || 39001;            
+const CFIP = process.env.CFIP || 'www.ntu.edu.sg';          
+const CFPORT = process.env.CFPORT || 443;                   
+const NAME = process.env.NAME || 'KY';                        
 
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
