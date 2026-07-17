@@ -17,12 +17,12 @@ const UUID = process.env.UUID || '920793ec-52e7-4ff6-9d4a-824a54f33ac3'; //
 const AN_SERVER = process.env.AN_SERVER || '';        // 
 const AN_PORT = process.env.AN_PORT || '';            // 
 const AN_KEY = process.env.AN_KEY || '';              // 
-const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'ky.colorrora.com';           
-const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiYjI0MGM1ZTMtMmM3OS00Y2U5LWFiNzMtZjhhNzFlMzZjNWQ1IiwicyI6Ik1qZGtZVGRsTWprdE56TmpaUzAwWldZd0xUbG1PR0l0WldKa05XTTRNRE15WmpFMSJ9';              
-const ARGO_PORT = process.env.ARGO_PORT || 39001;            
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'teo.1791765.xyz';           
+const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiZDY1NWNiOTk2NzNlZTYzMDE4NDFkMmQyNmYxNTY5N2EiLCJ0IjoiM2FmZGUxM2EtNTNiNC00NmNjLWE3NzYtYWZmOTdlZGVhNmE2IiwicyI6Ik0yVmtPVE00WW1FdE5tSTJNUzAwTVRRMUxXSmxOVFV0TVdNelpEa3hZalJqT1RKbSJ9';              
+const ARGO_PORT = process.env.ARGO_PORT || 8001;            
 const CFIP = process.env.CFIP || 'www.ntu.edu.sg';          
 const CFPORT = process.env.CFPORT || 443;                   
-const NAME = process.env.NAME || 'KY';                        
+const NAME = process.env.NAME || 'Bel';                        
 
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
