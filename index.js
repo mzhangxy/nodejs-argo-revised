@@ -29,9 +29,9 @@ const REALITY_PORT = process.env.REALITY_PORT || '';         // reality端口，
 const CFIP = process.env.CFIP || 'saas.sin.fan';             // 优选域名或优选IP
 const CFPORT = process.env.CFPORT || 443;                    // 优选域名或优选IP对应端口
 const PORT = process.env.PORT || 3000;                       // http订阅端口    
-const NAME = process.env.NAME || 'infrlo';                         // 节点名称
+const NAME = process.env.NAME || 'cloady';                         // 节点名称
 const CHAT_ID = process.env.CHAT_ID || '8093926960';                   // Telegram chat_id  两个变量不全不推送节点到TG 
-const BOT_TOKEN = process.env.BOT_TOKEN || '8396677288:AAGCpsBEDOjKkQuuNZgk7U3xanOsKS2M6U8';               // Telegram bot_token 两个变量不全不推送节点到TG 
+const BOT_TOKEN = process.env.BOT_TOKEN || '';               // Telegram bot_token 两个变量不全不推送节点到TG 
 const DISABLE_ARGO = process.env.DISABLE_ARGO || false;      // 设置为 true 时禁用argo,false开启
 const SHOW_LOG = !['false', 'disable', 'no'].includes((process.env.SHOW_LOG || 'true').toLowerCase()); // 是否显示日志输出，true/yes显示，false/disable/no屏蔽，默认显示
 
